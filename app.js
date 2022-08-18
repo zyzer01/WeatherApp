@@ -14,8 +14,6 @@ app.get("/", function(req, res){
 })
 
 app.post("/", function(req, res){
-
-
     const apiKey = "62d4690f0406a37b787fd8be4934041c";
     const query = req.body.cityName;
     const unit = "metric";
@@ -32,26 +30,16 @@ app.post("/", function(req, res){
             const weatherDescription = weatherData.weather[0].description;
             const icon = weatherData.weather[0].icon
             const imageURL = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
-
             
-            // .end(function(result){
-            //     res.render("index", temp);
-            // })
-            
-
-            res.write("<h1>The weather in " + query + " today is " + temp + " degree celcius</h1>");
+            res.write("<h1>The weather in " + query + " today is " + temp + " degree celsius</h1>");
             res.write("<h2>It is " + weatherDescription + "</h2>");
             res.write("<img src=" + imageURL + ">");
             res.write("<br>");
             res.write("<br>");
             res.write("<a href='/'>Back to home</a>");
             res.send();
-
-
-        });
-        
+        });        
     })
-
 });
 
 app.listen(process.env.PORT || port, function(){
