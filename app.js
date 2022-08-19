@@ -39,7 +39,8 @@ app.post("/", function(req, res){
             const options = {
                 weekday: "long",
                 hour: "2-digit",
-                minute: "2-digit"
+                minute: "2-digit",
+                timeZone: "Africa/Lagos"
             }
             const moment = event.toLocaleDateString("en-us", options);
 
