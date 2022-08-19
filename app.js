@@ -33,7 +33,16 @@ app.post("/", function(req, res){
             const weatherDescription = weatherData.weather[0].description;
             const icon = weatherData.weather[0].icon
             const imageURL = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
-            
+
+
+            const event = new Date();
+            const options = {
+                weekday: "long",
+                hour: "2-digit",
+                minute: "2-digit"
+            }
+            const moment = event.toLocaleDateString("en-us", options);
+
             // res.writeHead(200, { 'Content-Type': 'text/html' });
             // res.write("<h1>The weather in " + query + " today is " + temp + " degree celsius</h1>");
             // res.write("<h2>It is " + weatherDescription + "</h2>");
@@ -48,7 +57,8 @@ app.post("/", function(req, res){
                 degree: temp,
                 description: weatherDescription,
                 city: query,
-                image: imageURL
+                image: imageURL,
+                time: moment
             });
         });        
     })
