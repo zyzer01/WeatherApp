@@ -3,6 +3,9 @@ const https = require("https");
 const bodyParser = require("body-parser");
 
 const app = express();
+
+app.set("view engine", "ejs");
+
 const port = 3000;
 
 app.use(bodyParser.urlencoded({extended: true}));
@@ -31,14 +34,22 @@ app.post("/", function(req, res){
             const icon = weatherData.weather[0].icon
             const imageURL = "http://openweathermap.org/img/wn/" + icon + "@2x.png";
             
-            res.writeHead(200, { 'Content-Type': 'text/html' });
-            res.write("<h1>The weather in " + query + " today is " + temp + " degree celsius</h1>");
-            res.write("<h2>It is " + weatherDescription + "</h2>");
-            res.write("<img src=" + imageURL + ">");
-            res.write("<br>");
-            res.write("<br>");
-            res.write("<a href='/'>Back to home</a>");
-            res.send();
+            // res.writeHead(200, { 'Content-Type': 'text/html' });
+            // res.write("<h1>The weather in " + query + " today is " + temp + " degree celsius</h1>");
+            // res.write("<h2>It is " + weatherDescription + "</h2>");
+            // res.write("<img src=" + imageURL + ">");
+            // res.write("<br>");
+            // res.write("<br>");
+            // res.write("<a href='/'>Back to home</a>");
+            // res.send();
+
+
+            res.render("result", {
+                degree: temp,
+                description: weatherDescription,
+                city: query,
+                image: imageURL
+            });
         });        
     })
 });
