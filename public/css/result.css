@@ -63,11 +63,13 @@ body{
   }
   
   .modal-tour .modal-dialog {
+    margin: 0, auto;
     width: 450px;
   }
 
   @media (max-width: 768px) {
     .modal-tour .modal-dialog {
+      margin-left: 20px;
       width: 350px;
     }
     .modal-sheet .modal-dialog {
